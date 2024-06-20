@@ -44,8 +44,8 @@ function calcularResultado(seuNome, nomeAmor, chance) {
     }
 }
 
-// evento para o botão de calcular
-calcularBtn.addEventListener('click', () => {
+// função para lidar com o clique no botão de calcular
+function handleClick() {
     const agora = Date.now();
     const seuNome = seuNomeInput.value.trim();
     const nomeAmor = nomeAmorInput.value.trim();
@@ -77,27 +77,40 @@ calcularBtn.addEventListener('click', () => {
 
     let chance;
 
-    // Verifica se os nomes são "Gabriel" e "Vitória" AMO MINHA NAMORADA! <3
+    // Verifica se os nomes são "Gabriel" e "Vitória"
     if ((seuNome.toUpperCase() === 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) === 'VITORIA') ||
         (seuNome.toUpperCase() === 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL')) {
         chance = 100;
-    
-    } else if((seuNome.toUpperCase() === 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) !== 'VITORIA') ||
-    (seuNome.toUpperCase() != 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL')) {
+    } else if ((seuNome.toUpperCase() === 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) !== 'VITORIA') ||
+        (seuNome.toUpperCase() !== 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL')) {
         chance = 0;
-    } else if ((seuNome.toUpperCase() != 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) == 'VITORIA') ||
-    (seuNome.toUpperCase() == 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) != 'GABRIEL')) {
+    } else if ((seuNome.toUpperCase() !== 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) === 'VITORIA') ||
+        (seuNome.toUpperCase() === 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) !== 'GABRIEL')) {
         chance = 0;
-    }
-    else {
-        // calcula uma chance aleatoria
+    } else {
+        // calcula uma chance aleatória
         chance = Math.floor(Math.random() * 100) + 1;
     }
 
     // calcula e exibe o resultado
     calcularResultado(seuNome, nomeAmor, chance);
+}
 
- 
+// evento para o botão de calcular
+calcularBtn.addEventListener('click', handleClick);
+
+// evento de tecla para o campo de entrada seuNomeInput
+seuNomeInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        handleClick(); // Chama a função handleClick se a tecla pressionada for Enter
+    }
+});
+
+// evento de tecla para o campo de entrada nomeAmorInput
+nomeAmorInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        handleClick(); // Chama a função handleClick se a tecla pressionada for Enter
+    }
 });
 
 // modal para mensagem de erro
@@ -106,6 +119,6 @@ function exibirErroNaoString() {
         icon: 'error',
         title: 'Entrada inválida!',
         text: 'Por favor, verifique os dados inseridos e tente novamente.',
-        confirmButtonColor: '#d81b60' 
+        confirmButtonColor: '#d81b60'
     });
 }
