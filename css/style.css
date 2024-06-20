@@ -1,0 +1,129 @@
+/* geral */
+body {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+}
+
+/* contêiner Principal */
+.container {
+    width: 100%;
+    max-width: 360px; 
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* título principal */
+h1 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #333333;
+}
+
+/* formulário */
+#love-calculator-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#love-calculator-form input {
+    width: calc(100% - 20px); 
+    height: 40px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+#love-calculator-form input:focus {
+    outline: none;
+    border-color: #f06292;
+}
+
+/* botão calcular */
+#calculate-btn {
+    width: 50%;
+    height: 40px;
+    border: none;
+    background-color: #f06292;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#calculate-btn:hover {
+    background-color: #d81b60;
+}
+
+/* contêiner de resultados (inicialmente oculto) */
+#result-container {
+    display: none;
+    margin-top: 20px;
+    color: #333333;
+    text-align: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#result-container h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#result-container p {
+    font-size: 16px;
+}
+
+/* opacidade do coração */
+.low-opacity .heart {
+    opacity: 0.3;
+}
+
+.medium-opacity .heart {
+    opacity: 0.8;
+}
+
+.high-opacity .heart {
+    opacity: 1;
+}
+
+/* responsivo */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 300px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .result {
+        padding: 8px;
+    }
+
+    .result h2 {
+        font-size: 18px;
+    }
+
+    .result p {
+        font-size: 14px;
+    }
+}
