@@ -82,8 +82,11 @@ calcularBtn.addEventListener('click', () => {
         (seuNome.toUpperCase() === 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL')) {
         chance = 100;
     
-    } else if(((seuNome.toUpperCase() === 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) !== 'VITORIA') ||
-    (seuNome.toUpperCase() != 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL'))) {
+    } else if((seuNome.toUpperCase() === 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) !== 'VITORIA') ||
+    (seuNome.toUpperCase() != 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL')) {
+        chance = 0;
+    } else if ((seuNome.toUpperCase() != 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) == 'VITORIA') ||
+    (seuNome.toUpperCase() == 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) != 'GABRIEL')) {
         chance = 0;
     }
     else {
