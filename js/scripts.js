@@ -81,13 +81,20 @@ calcularBtn.addEventListener('click', () => {
     if ((seuNome.toUpperCase() === 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) === 'VITORIA') ||
         (seuNome.toUpperCase() === 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL')) {
         chance = 100;
-    } else {
+    
+    } else if(((seuNome.toUpperCase() === 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) !== 'VITORIA') ||
+    (seuNome.toUpperCase() != 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL'))) {
+        chance = 0;
+    }
+    else {
         // calcula uma chance aleatoria
         chance = Math.floor(Math.random() * 100) + 1;
     }
 
     // calcula e exibe o resultado
     calcularResultado(seuNome, nomeAmor, chance);
+
+ 
 });
 
 // modal para mensagem de erro
