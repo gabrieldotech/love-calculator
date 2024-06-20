@@ -77,7 +77,7 @@ calcularBtn.addEventListener('click', () => {
 
     let chance;
 
-    // Verifica se os nomes são "Gabriel" e "Vitória"
+    // Verifica se os nomes são "Gabriel" e "Vitória" AMO MINHA NAMORADA! <3
     if ((seuNome.toUpperCase() === 'GABRIEL' && removerAcentos(nomeAmor.toUpperCase()) === 'VITORIA') ||
         (seuNome.toUpperCase() === 'VITORIA' && removerAcentos(nomeAmor.toUpperCase()) === 'GABRIEL')) {
         chance = 100;
