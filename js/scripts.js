@@ -87,15 +87,17 @@ function handleClick() {
 
     let chance;
 
-    // Verifica se os nomes são "Gabriel" e "Vitória"
+// Verifica se os nomes são "Gabriel" e "Vitória"
     const seuNomeRemovidoAcentos = removerAcentos(seuNome.toUpperCase());
     const nomeAmorRemovidoAcentos = removerAcentos(nomeAmor.toUpperCase());
-
+    
     if ((seuNomeRemovidoAcentos === 'GABRIEL' && nomeAmorRemovidoAcentos === 'VITORIA') ||
         (seuNomeRemovidoAcentos === 'VITORIA' && nomeAmorRemovidoAcentos === 'GABRIEL')) {
         chance = 100;
     } else if ((seuNomeRemovidoAcentos === 'GABRIEL' && nomeAmorRemovidoAcentos !== 'VITORIA') ||
-        (seuNomeRemovidoAcentos !== 'GABRIEL' && nomeAmorRemovidoAcentos === 'VITORIA')) {
+        (seuNomeRemovidoAcentos !== 'GABRIEL' && nomeAmorRemovidoAcentos === 'VITORIA') ||
+        (seuNomeRemovidoAcentos === 'VITORIA' && nomeAmorRemovidoAcentos !== 'GABRIEL') ||
+        (seuNomeRemovidoAcentos !== 'VITORIA' && nomeAmorRemovidoAcentos === 'GABRIEL')) {
         chance = 0;
     } else {
         // Calcula uma chance aleatória
