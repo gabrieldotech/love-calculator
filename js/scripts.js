@@ -5,20 +5,20 @@ const resultContainer = document.getElementById('result-container');
 
 let nomeAnterior = '';
 let nomeAmorAnterior = '';
-let resultadoAnterior = null; // Armazena o último resultado para comparação
+let resultadoAnterior = null; // armazena o último resultado para comparação
 let ultimoClique = 0;
 
-// Função para remover acentos de caracteres específicos
+// remove acentos de caracteres específicos
 function removerAcentos(str) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-// Função para verificar se um valor é uma string válida (pelo menos 2 caracteres e apenas letras)
+// verifica se um valor é uma string válida (pelo menos 2 caracteres e apenas letras)
 function ehStringValida(valor) {
     return typeof valor === 'string' && valor.trim().length >= 2 && /^[a-zA-ZÀ-ÿ ]+$/.test(valor);
 }
 
-// Função para calcular e exibir o resultado
+// alcula e exibir o resultado
 function calcularResultado(seuNome, nomeAmor, chance) {
     // Exibe o resultado
     resultContainer.style.display = 'block';
@@ -28,13 +28,13 @@ function calcularResultado(seuNome, nomeAmor, chance) {
         <p>Chance de dar certo: <strong>${chance}%</strong></p>
     `;
 
-    // Atualiza o resultado anterior
+    // atualiza o resultado anterior
     resultadoAnterior = { seuNome, nomeAmor, chance };
 
-    // Remove todas as classes de opacidade do coração
+    // remove todas as classes de opacidade do coração
     resultContainer.classList.remove('low-opacity', 'medium-opacity', 'high-opacity');
 
-    // Adiciona a classe de opacidade com base na chance
+    // adiciona a classe de opacidade com base na chance
     if (chance <= 50) {
         resultContainer.classList.add('low-opacity');
     } else if (chance <= 79) {
@@ -44,7 +44,7 @@ function calcularResultado(seuNome, nomeAmor, chance) {
     }
 }
 
-// Função para exibir mensagem de erro
+// exibe mensagem de erro
 function exibirErroNaoString() {
     Swal.fire({
         icon: 'error',
@@ -54,40 +54,40 @@ function exibirErroNaoString() {
     });
 }
 
-// Função para lidar com o clique no botão de calcular
+// lida com o clique no botão de calcular
 function handleClick() {
     const agora = Date.now();
     const seuNome = seuNomeInput.value.trim();
     const nomeAmor = nomeAmorInput.value.trim();
 
-    // Verifica se os valores nos inputs são strings válidas
+    // verifica se os valores nos inputs são strings válidas
     if (!ehStringValida(seuNome) || !ehStringValida(nomeAmor)) {
         exibirErroNaoString();
         return;
     }
 
-    // Verifica se os nomes são os mesmos da última vez e se o último clique foi há mais de 1 segundo
+    // verifica se os nomes são os mesmos da última vez e se o último clique foi há mais de 1 segundo
     if (seuNome === nomeAnterior && nomeAmor === nomeAmorAnterior && (agora - ultimoClique < 1000)) {
         // Bloqueia o clique
         return;
     }
 
-    // Atualiza o tempo do último clique
+    // atualiza o tempo do último clique
     ultimoClique = agora;
 
-    // Verifica se houve mudança nos inputs desde o último cálculo válido
+    // verifica se houve mudança nos inputs desde o último cálculo válido
     if (resultadoAnterior && seuNome === resultadoAnterior.seuNome && nomeAmor === resultadoAnterior.nomeAmor) {
         // Bloqueia o clique
         return;
     }
 
-    // Atualiza os nomes anteriores
+    // atualiza os nomes anteriores
     nomeAnterior = seuNome;
     nomeAmorAnterior = nomeAmor;
 
     let chance;
 
-// Verifica se os nomes são "Gabriel" e "Vitória"
+// verifica se os nomes são "Gabriel" e "Vitória" ;)
     const seuNomeRemovidoAcentos = removerAcentos(seuNome.toUpperCase());
     const nomeAmorRemovidoAcentos = removerAcentos(nomeAmor.toUpperCase());
     
@@ -100,25 +100,25 @@ function handleClick() {
         (seuNomeRemovidoAcentos !== 'VITORIA' && nomeAmorRemovidoAcentos === 'GABRIEL')) {
         chance = 0;
     } else {
-        // Calcula uma chance aleatória
+        // calcula uma chance aleatória
         chance = Math.floor(Math.random() * 100) + 1;
     }
 
-    // Calcula e exibe o resultado
+    // calcula e exibe o resultado
     calcularResultado(seuNome, nomeAmor, chance);
 }
 
-// Evento para o botão de calcular
+// evento para o botão de calcular
 calcularBtn.addEventListener('click', handleClick);
 
-// Evento de tecla para o campo de entrada seuNomeInput
+// evento de tecla para o campo de entrada seuNomeInput
 seuNomeInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
         handleClick(); // Chama a função handleClick se a tecla pressionada for Enter
     }
 });
 
-// Evento de tecla para o campo de entrada nomeAmorInput
+// evento de tecla para o campo de entrada nomeAmorInput
 nomeAmorInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
         handleClick(); // Chama a função handleClick se a tecla pressionada for Enter
