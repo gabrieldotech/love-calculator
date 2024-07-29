@@ -19,11 +19,3 @@ O **Calculadora do Amor** é uma aplicação web simples que calcula a "chance d
 - **JavaScript:** Lógica para calcular a chance e manipular a DOM.
 - **SweetAlert2:** Biblioteca para exibir mensagens de erro.
 
-## Instalação
-
-Para rodar este projeto localmente, siga estes passos:
-
-1. **Clone o Repositório:**
-
-   ```bash
-   git clone https://github.com/seu-usuario/calculadora-do-amor.git
