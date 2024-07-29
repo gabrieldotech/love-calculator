@@ -5,7 +5,7 @@ const resultContainer = document.getElementById('result-container');
 
 let nomeAnterior = '';
 let nomeAmorAnterior = '';
-let resultadoAnterior = null; // armazena o último resultado para comparação
+let resultadoAnterior = null; 
 let ultimoClique = 0;
 
 // remove acentos de caracteres específicos
@@ -68,7 +68,6 @@ function handleClick() {
 
     // verifica se os nomes são os mesmos da última vez e se o último clique foi há mais de 1 segundo
     if (seuNome === nomeAnterior && nomeAmor === nomeAmorAnterior && (agora - ultimoClique < 1000)) {
-        // Bloqueia o clique
         return;
     }
 
@@ -77,7 +76,6 @@ function handleClick() {
 
     // verifica se houve mudança nos inputs desde o último cálculo válido
     if (resultadoAnterior && seuNome === resultadoAnterior.seuNome && nomeAmor === resultadoAnterior.nomeAmor) {
-        // Bloqueia o clique
         return;
     }
 
@@ -86,23 +84,6 @@ function handleClick() {
     nomeAmorAnterior = nomeAmor;
 
     let chance;
-
-// verifica se os nomes são "Gabriel" e "Vitória" ;)
-    const seuNomeRemovidoAcentos = removerAcentos(seuNome.toUpperCase());
-    const nomeAmorRemovidoAcentos = removerAcentos(nomeAmor.toUpperCase());
-    
-    if ((seuNomeRemovidoAcentos === 'GABRIEL' && nomeAmorRemovidoAcentos === 'VITORIA') ||
-        (seuNomeRemovidoAcentos === 'VITORIA' && nomeAmorRemovidoAcentos === 'GABRIEL')) {
-        chance = 100;
-    } else if ((seuNomeRemovidoAcentos === 'GABRIEL' && nomeAmorRemovidoAcentos !== 'VITORIA') ||
-        (seuNomeRemovidoAcentos !== 'GABRIEL' && nomeAmorRemovidoAcentos === 'VITORIA') ||
-        (seuNomeRemovidoAcentos === 'VITORIA' && nomeAmorRemovidoAcentos !== 'GABRIEL') ||
-        (seuNomeRemovidoAcentos !== 'VITORIA' && nomeAmorRemovidoAcentos === 'GABRIEL')) {
-        chance = 0;
-    } else {
-        // calcula uma chance aleatória
-        chance = Math.floor(Math.random() * 100) + 1;
-    }
 
     // calcula e exibe o resultado
     calcularResultado(seuNome, nomeAmor, chance);
@@ -114,13 +95,13 @@ calcularBtn.addEventListener('click', handleClick);
 // evento de tecla para o campo de entrada seuNomeInput
 seuNomeInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
-        handleClick(); // Chama a função handleClick se a tecla pressionada for Enter
+        handleClick(); 
     }
 });
 
 // evento de tecla para o campo de entrada nomeAmorInput
 nomeAmorInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
-        handleClick(); // Chama a função handleClick se a tecla pressionada for Enter
+        handleClick(); 
     }
 });
