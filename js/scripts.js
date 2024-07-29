@@ -8,19 +8,21 @@ let nomeAmorAnterior = '';
 let resultadoAnterior = null; 
 let ultimoClique = 0;
 
-// remove acentos de caracteres específicos
-function removerAcentos(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-
 // verifica se um valor é uma string válida (pelo menos 2 caracteres e apenas letras)
 function ehStringValida(valor) {
     return typeof valor === 'string' && valor.trim().length >= 2 && /^[a-zA-ZÀ-ÿ ]+$/.test(valor);
 }
 
-// alcula e exibir o resultado
-function calcularResultado(seuNome, nomeAmor, chance) {
-    // Exibe o resultado
+// calcula a chance de dar certo entre os nomes
+function calcularChance(seuNome, nomeAmor) {
+    return Math.floor(Math.random() * 101);
+}
+
+// calcula e exibe o resultado
+function calcularResultado(seuNome, nomeAmor) {
+    const chance = calcularChance(seuNome, nomeAmor);
+
+    // exibe o resultado
     resultContainer.style.display = 'block';
     resultContainer.innerHTML = `
         <h2>Resultado do amor</h2>
@@ -83,10 +85,8 @@ function handleClick() {
     nomeAnterior = seuNome;
     nomeAmorAnterior = nomeAmor;
 
-    let chance;
-
     // calcula e exibe o resultado
-    calcularResultado(seuNome, nomeAmor, chance);
+    calcularResultado(seuNome, nomeAmor);
 }
 
 // evento para o botão de calcular
